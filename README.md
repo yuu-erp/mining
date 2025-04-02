@@ -681,9 +681,420 @@ Output:
 ## 5. Quản lý Ví Wallet và Code
 
 ### SMC Functions
+#### setPhoneWalletLockTime
 
-### API Endpoints
+```json
+{
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "miningAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "newLockTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "lockRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "setPhoneWalletLockTime",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+```
 
+#### setCodeLockTime
+
+```json
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "codeHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "newLockTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "lockRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "setCodeLockTime",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+```
+
+#### viewMiningWalletBalance
+
+```json
+{
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "miningAddress",
+        "type": "address"
+      }
+    ],
+    "name": "viewMiningWalletBalance",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "joinDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "balanceMTD",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lastestMint",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "claimVelSto",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalMember",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxStake",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "currentStake",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "currentDepositUSDM",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "byReferrer",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "releasePercentage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lockTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "keyHash",
+            "type": "bytes32"
+          }
+        ],
+        "internalType": "struct MiningStorage.UserData",
+        "name": "user",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "codeHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "activeTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expirationActiveTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "boostSpeed",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "boostTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rateBoost",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "delegate",
+            "type": "address"
+          },
+          {
+            "internalType": "enum Status",
+            "name": "status",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "origin",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mintedAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "releasePercentage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lockTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "keyHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "currentDeposit",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lastestClaim",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct Code[]",
+        "name": "codes",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+```
+
+#### updateCodeWalletKey
+
+```json
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "codeHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "string",
+        "name": "rawKey",
+        "type": "string"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "newKeyHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "updateCodeWalletKey",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+```
+
+#### updateWalletKey
+
+```json
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "miningAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "rawKey",
+        "type": "string"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "newKeyHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "updateWalletKey",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+```
+
+#### toUSD
+
+```json
+    {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amountME",
+        "type": "uint256"
+      }
+    ],
+    "name": "toUSD",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "amountUSDM",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+```
+
+#### withdraw
+
+```json
+      {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "miningAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amountMTD",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "rawKey",
+        "type": "string"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "newKeyHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "withdraw",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "historyhash",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+```
+
+#### withdrawFromCode
+
+```json
+{
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "miningAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "codeHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amountMTD",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "rawKey",
+        "type": "string"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "newKeyHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "withdrawFromCode",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "historyhash",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+```
 
 ## 6. Hoàn Tiền Deposit
 
