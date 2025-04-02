@@ -25,11 +25,6 @@
     "type": "function"
   },
 ```
-Input:
-- address: địa chỉ của ví phone
-
-Output:
-- bool: true nếu đã được active
 
 ### API Endpoints
 ```http
@@ -81,11 +76,6 @@ Request Body:
     "type": "function"
   }
 ```
-Input:
-- user: Địa chỉ ví phone
-
-Output:
-- trả ra một mảng ví đã được thêm vào ví đào
 
 #### viewMiningWallet
 ```json
@@ -175,10 +165,6 @@ Output:
     "type": "function"
   }
 ```
-Input:
-
-Output:
-- trả ra thông tin.
 
 #### addVisibleAddress
 ```json
@@ -196,10 +182,6 @@ Output:
     "type": "function"
   }
 ```
-Input:
-- list: danh sách địa chỉ ví user
-
-Output: không có output
 
 #### removeVisibleAddress
 ```json
@@ -223,11 +205,6 @@ Output: không có output
     "type": "function"
   }
 ```
-Input:
-- removedAddress: địa chỉ ví cần xoá
-
-Output:
-- success: true nếu xoá thành công
 
 ### API Endpoints
 ```http
@@ -328,9 +305,6 @@ Response:
     "type": "function"
   }
 ```
-Input: địa chỉ ví phone
-
-Output: trả thông tin
 
 #### claimAmount
 ```json
@@ -348,9 +322,6 @@ Output: trả thông tin
     "type": "function"
   }
 ```
-Input: không truyền
-
-Output: claimAmount tốc độ đào
 
 ## 4. Active Code từ PO5
 
@@ -377,10 +348,6 @@ Output: claimAmount tốc độ đào
     "type": "function"
   }
 ```
-Input:
-- target: địa chỉ ví phone
-
-Output: số lượng code đã được active từ ví phone
 
 #### mCodeHasToDiscountInfo
 ```json
@@ -419,9 +386,6 @@ Output: số lượng code đã được active từ ví phone
     "type": "function"
   }
 ```
-Input: bytes32 hash của codeFE từ po5
-
-Output: trả ra thông tin để tính boostSpeed và boostTime
 
 #### getCodeInfo
 ```json
@@ -527,9 +491,6 @@ Output: trả ra thông tin để tính boostSpeed và boostTime
     "type": "function"
   }
 ```
-Input: codeHash: lấy codeFE po5 đi hash
-
-Output: trả ra thông tin của code
 
 #### activeCode
 ```json
@@ -553,9 +514,6 @@ Output: trả ra thông tin của code
     "type": "function"
   }
 ```
-Input: codeFE: codeFE từ po5
-
-Output: true nếu code được active thành công
 
 #### GetSubmittedCodes
 ```json
@@ -671,12 +629,6 @@ Output: true nếu code được active thành công
     "type": "function"
   }
 ```
-Input: 
-- target: địa chỉ ví phone
-
-Output: 
-- isMore: true nếu danh sách vẫn còn
-- listCode: danh sách code đã active
 
 ## 5. Quản lý Ví Wallet và Code
 
@@ -1100,4 +1052,199 @@ Output:
 
 ### SMC Functions
 
+#### getHash
+
+```json
+{
+    "inputs": [
+        {
+            "internalType": "bytes32",
+            "name": "key",
+            "type": "bytes32"
+        },
+        {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+        }
+    ],
+    "name": "getHash",
+    "outputs": [
+        {
+            "internalType": "bool",
+            "name": "isMore",
+            "type": "bool"
+        },
+        {
+            "components": [
+                {
+                    "internalType": "bytes32",
+                    "name": "hash",
+                    "type": "bytes32"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "rate",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amountNative",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amountUsdt",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "timestamp",
+                    "type": "uint256"
+                }
+            ],
+            "internalType": "struct DepositHistory[]",
+            "name": "arrayHashInfo",
+            "type": "tuple[]"
+        }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+}
+```
+
+#### withdrawUsdt
+
+```json
+{
+    "inputs": [
+        {
+            "internalType": "bytes32",
+            "name": "key",
+            "type": "bytes32"
+        }
+    ],
+    "name": "withdrawUsdt",
+    "outputs": [
+        {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+        }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+}
+```
+## 7. Referral Team
+
+### SMC Functions
+#### getReferralReport
+
+```json
+  {
+    "inputs": [],
+    "name": "getReferralReport",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "cycle",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "totalMemberRef",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "totalReward",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "commssion",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[8]",
+        "name": "reward",
+        "type": "uint256[8]"
+      },
+      {
+        "internalType": "uint256[8]",
+        "name": "member",
+        "type": "uint256[8]"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+```
+#### getReferralReportWeekly
+
+```json
+{
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "level",
+        "type": "uint256"
+      }
+    ],
+    "name": "getReferralReportWeekly",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "cycle",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "memberAtLevelCurrent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "rewardAtLevelCurrent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "memberAtLevelPast",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "rewardAtLevelPast",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+```
 ### API Endpoints
+```http
+GET /secured/referral
+Response:
+{
+    "rows": string,
+}
+```
+
+```http
+POST /secured/contact
+Request Body:
+{
+    "contactList": "{ phoneNumber: string; name: string }[]",
+}
+```
+
+```http
+GET /secured/get-contact
+Response:
+{
+    "rows": "{ phoneNumber: string; name: string }[]",
+}
+```
